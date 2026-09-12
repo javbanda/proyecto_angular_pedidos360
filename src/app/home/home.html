@@ -1,1 +1,29 @@
-<p>home works!</p>
+<header class="hero">
+  <h1>{{ nombrePlataforma }}</h1>
+  <p>Gestión de pedidos para tu red de cafeterías y panaderías</p>
+  <div class="hero-actions">
+    <a routerLink="/login" class="btn btn-primary">Iniciar sesión</a>
+    <a routerLink="/pedidos" class="btn btn-secondary">Ver pedidos</a>
+  </div>
+</header>
+
+<nav class="menu">
+  <a routerLink="/">Inicio</a>
+  <a routerLink="/pedidos">Pedidos</a>
+  <a routerLink="/login">Login</a>
+</nav>
+
+<section class="features">
+  <div class="feature-card">
+    <h3>Pedidos en línea</h3>
+    <p>Tus clientes hacen pedidos desde cualquier dispositivo.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Catálogo</h3>
+    <p>Panes, pasteles y café siempre actualizados.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Reportes en tiempo real</h3>
+    <p>Ventas, tiempos de entrega y estados de pedidos al día.</p>
+  </div>
+</section>
