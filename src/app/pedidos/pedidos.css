@@ -1,0 +1,139 @@
+/* Contenedor general */
+:host {
+  display: block;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+/* Título principal */
+h2 {
+  text-align: center;
+  color: #2f5d50;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* Formulario */
+form {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
+}
+
+/* Cada campo */
+form div {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+/* Input seleccionado */
+input:focus {
+  border-color: #66cdaa;
+  box-shadow: 0 0 0 3px rgba(102, 205, 170, 0.2);
+}
+
+/* Placeholder */
+input::placeholder {
+  color: #999;
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 13px;
+  background: #66cdaa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Hover botón */
+button:hover {
+  background: #4fb394;
+  transform: translateY(-1px);
+}
+
+/* Separador */
+hr {
+  margin: 40px 0 30px;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* Título de la lista */
+h3 {
+  color: #2f5d50;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Lista */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada pedido */
+li {
+  background: white;
+  margin-bottom: 12px;
+  padding: 18px 20px;
+  border-radius: 10px;
+  border-left: 5px solid #66cdaa;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.2s;
+}
+
+/* Efecto al pasar el mouse */
+li:hover {
+  transform: translateX(4px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Número y cliente */
+li strong {
+  color: #2f5d50;
+  font-size: 16px;
+}
+
+/* Total */
+li {
+  color: #555;
+}
+
+/* Mensaje cuando no hay pedidos */
+li:only-child {
+  text-align: center;
+  color: #888;
+  border-left: none;
+  background: #f8f8f8;
+}

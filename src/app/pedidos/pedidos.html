@@ -1,0 +1,37 @@
+
+<h2>Gestión de Pedidos</h2>
+
+<form (ngSubmit)="guardarPedido()">
+    <div>
+        <label for="cliente">Cliente</label>
+        <input type="text" id="cliente" [(ngModel)]="nuevoPedido().cliente"
+          name="cliente" placeholder="Cliente" required />
+    </div>
+
+    <div>
+        <label for="detalle">Detalle:</label>
+        <input
+          type="text" id="detalle" [(ngModel)]="nuevoPedido().detalle"
+          name="detalle" placeholder="Detalle (Ej: 1 Kilo Pan)" required />
+    </div>
+
+    <div>
+        <label for="total">Total($):</label>
+        <input
+          type="number" id="total" [(ngModel)]="nuevoPedido().total"
+          name="total" placeholder="Total ($)" required />
+    </div>
+        <button type="submit">Crear Pedido</button>
+</form>
+<hr />
+
+<h3>Lista de pedidos</h3>
+<ul>
+    @for (p of pedidos(); track p.id) {
+      <li>
+        <strong>#{{ p.id }} - {{ p.cliente }}</strong>: {{ p.detalle }} (Total: ${{ p.total}})
+      </li>
+    } @empty {
+        <li>No hay pedidos registrados.</li>
+    }
+</ul>
