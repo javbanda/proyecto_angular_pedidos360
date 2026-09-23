@@ -1,1 +1,25 @@
-<p>reportes works!</p>
+<h1>Reportes Pedidos360</h1>
+
+<hr>
+
+<h2>Estado del microservicio</h2>
+
+<p>{{ kpis() }}</p>
+
+<hr>
+
+<h2>Estados activos</h2>
+
+<pre>{{ estadosActivos() | json }}</pre>
+
+<hr>
+
+<h2>Lead Time</h2>
+
+<pre>{{ leadTime() | json }}</pre>
+
+<hr>
+
+<h2>Ventas por hora</h2>
+
+<pre>{{ ventasPorHora() | json }}</pre>
