@@ -1,25 +1,51 @@
-<h1>Reportes Pedidos360</h1>
+<div class="reportes-container">
 
-<hr>
+  <h1>Reportes Pedidos360</h1>
+  <p class="subtitulo">Panel de indicadores de pedidos y ventas</p>
 
-<h2>Estado del microservicio</h2>
+  <!-- Estado del microservicio -->
+  <section class="estado-servicio">
+    <h2>Estado del servicio</h2>
+    <p>🟢 {{ kpis() }}</p>
+  </section>
 
-<p>{{ kpis() }}</p>
+  <!-- Indicadores principales -->
+  <div class="tarjetas">
 
-<hr>
+    <div class="tarjeta">
+      <h3>Pedidos activos</h3>
 
-<h2>Estados activos</h2>
+      @for (estado of estadosActivos(); track estado.estado) {
+        <p class="numero">{{ estado.cantidad }}</p>
+        <span>{{ estado.estado }}</span>
+      } @empty {
+        <p>No hay pedidos activos</p>
+      }
+    </div>
 
-<pre>{{ estadosActivos() | json }}</pre>
+    <div class="tarjeta">
+      <h3>Lead Time promedio</h3>
 
-<hr>
+      @if (leadTime()) {
+        <p class="numero">{{ leadTime().promedioMinutos }} min</p>
+        <span>
+          {{ leadTime().cantidadPedidosConsiderados }}
+          pedidos considerados
+        </span>
+      }
+    </div>
 
-<h2>Lead Time</h2>
+    <div class="tarjeta">
+      <h3>Ventas por hora</h3>
 
-<pre>{{ leadTime() | json }}</pre>
+      @for (venta of ventasPorHora(); track venta.hora) {
+        <p class="numero">${{ venta.totalVentas }}</p>
+        <span>{{ venta.hora }}:00 hrs</span>
+      } @empty {
+        <p>No hay ventas registradas</p>
+      }
+    </div>
 
-<hr>
+  </div>
 
-<h2>Ventas por hora</h2>
-
-<pre>{{ ventasPorHora() | json }}</pre>
+</div>
