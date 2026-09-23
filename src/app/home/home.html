@@ -1,29 +1,60 @@
-<header class="hero">
-  <h1>{{ nombrePlataforma }}</h1>
-  <p>Gestión de pedidos para tu red de cafeterías y panaderías</p>
-  <div class="hero-actions">
-    <a routerLink="/login" class="btn btn-primary">Iniciar sesión</a>
-    <a routerLink="/pedidos" class="btn btn-secondary">Ver pedidos</a>
-  </div>
-</header>
+<div class="home-container">
 
-<nav class="menu">
-  <a routerLink="/">Inicio</a>
-  <a routerLink="/pedidos">Pedidos</a>
-  <a routerLink="/login">Login</a>
-</nav>
+  <header class="encabezado">
+    <h1>{{ nombrePlataforma }}</h1>
+    <p>Gestión de pedidos para tu red de cafeterías y panaderías</p>
+  </header>
 
-<section class="features">
-  <div class="feature-card">
-    <h3>Pedidos en línea</h3>
-    <p>Tus clientes hacen pedidos desde cualquier dispositivo.</p>
-  </div>
-  <div class="feature-card">
-    <h3>Catálogo</h3>
-    <p>Panes, pasteles y café siempre actualizados.</p>
-  </div>
-  <div class="feature-card">
-    <h3>Reportes en tiempo real</h3>
-    <p>Ventas, tiempos de entrega y estados de pedidos al día.</p>
-  </div>
-</section>
+  <nav class="menu">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/pedidos">Pedidos</a>
+    <a routerLink="/reportes">Reportes</a>
+    <a routerLink="/login">Login</a>
+  </nav>
+
+  <section class="bienvenida">
+    <h2>Bienvenido a Pedidos360</h2>
+    <p>
+      Plataforma para gestionar pedidos, consultar información
+      y visualizar reportes.
+    </p>
+  </section>
+
+  <section class="tarjetas">
+
+    <div class="tarjeta">
+      <h3>Pedidos</h3>
+      <p>
+        Consulta y administra los pedidos registrados en la plataforma.
+      </p>
+
+      <a routerLink="/pedidos" class="boton">
+        Ver pedidos
+      </a>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Reportes</h3>
+      <p>
+        Consulta ventas, estados de pedidos y tiempos de entrega.
+      </p>
+
+      <a routerLink="/reportes" class="boton">
+        Ver reportes
+      </a>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Acceso</h3>
+      <p>
+        Inicia sesión para acceder a las funciones de la plataforma.
+      </p>
+
+      <a routerLink="/login" class="boton">
+        Iniciar sesión
+      </a>
+    </div>
+
+  </section>
+
+</div>
