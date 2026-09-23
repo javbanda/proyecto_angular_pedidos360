@@ -69,4 +69,20 @@ export class Reportes implements OnInit {
       }
     });
   }
+
+  guardarReporte(): void {
+
+    this.reportesService.crearReporte(this.nuevoReporte).subscribe({
+      next: (respuesta) => {
+        console.log('Reporte registrado:', respuesta);
+        alert('Pedido registrado correctamente');
+      },
+      error: (error) => {
+        console.error('Error al registrar pedido:', error);
+        alert('Error al registrar el pedido');
+      }
+    });
+
+  }
+
 }
