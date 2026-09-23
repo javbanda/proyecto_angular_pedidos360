@@ -1,0 +1,102 @@
+/* Contenedor principal */
+.reportes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Título */
+.reportes-container h1 {
+  margin-bottom: 5px;
+  font-size: 32px;
+  color: #222;
+}
+
+.subtitulo {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Estado del microservicio */
+.estado-servicio {
+  background: #f5f7f9;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 30px;
+  border: 1px solid #e3e6e8;
+}
+
+.estado-servicio h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.estado-servicio p {
+  margin: 0;
+  color: #333;
+}
+
+/* Contenedor de tarjetas */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Tarjetas */
+.tarjeta {
+  background: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 14px;
+  padding: 25px;
+  min-height: 160px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.tarjeta h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #444;
+}
+
+/* Número principal de cada indicador */
+.numero {
+  margin: 0 0 8px;
+  font-size: 34px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.tarjeta span {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 800px) {
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .reportes-container {
+    padding: 25px 15px;
+  }
+
+  .reportes-container h1 {
+    font-size: 26px;
+  }
+}
