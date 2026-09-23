@@ -1,11 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ReporteService } from './reporteservice';
 import { JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [JsonPipe, FormsModule],
   templateUrl: './reportes.html',
   styleUrl: './reportes.css'
 })
@@ -17,6 +18,14 @@ export class Reportes implements OnInit {
   estadosActivos = signal<any[]>([]);
   leadTime = signal<any>(null);
   ventasPorHora = signal<any[]>([]);
+
+  nuevoReporte = {
+    pedidoId: null,
+    estado: 'CREADO',
+    fechaCreacion: '',
+    fechaEntrega: '',
+    montoTotal: null
+  };
 
   ngOnInit(): void {
 
