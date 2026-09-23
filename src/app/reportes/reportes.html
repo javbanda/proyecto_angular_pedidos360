@@ -48,4 +48,83 @@
 
   </div>
 
+  <!-- Formulario para registrar pedidos -->
+  <section class="formulario-reporte">
+
+    <h2>Registrar pedido</h2>
+
+    <p class="descripcion-formulario">
+      Ingresa un pedido para actualizar los indicadores del reporte.
+    </p>
+
+    <form>
+
+      <div class="campo">
+        <label for="pedidoId">ID del pedido</label>
+
+        <input
+          id="pedidoId"
+          type="number"
+          name="pedidoId"
+          [(ngModel)]="nuevoReporte.pedidoId">
+      </div>
+
+      <div class="campo">
+        <label for="estado">Estado</label>
+
+        <select
+          id="estado"
+          name="estado"
+          [(ngModel)]="nuevoReporte.estado">
+
+          <option value="CREADO">Creado</option>
+          <option value="ACEPTADO">Aceptado</option>
+          <option value="EN_PREPARACION">En preparación</option>
+          <option value="DESPACHADO">Despachado</option>
+          <option value="ENTREGADO">Entregado</option>
+          <option value="CANCELADO">Cancelado</option>
+
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="fechaCreacion">Fecha de creación</label>
+
+        <input
+          id="fechaCreacion"
+          type="datetime-local"
+          name="fechaCreacion"
+          [(ngModel)]="nuevoReporte.fechaCreacion">
+      </div>
+
+      <div class="campo">
+        <label for="fechaEntrega">Fecha de entrega</label>
+
+        <input
+          id="fechaEntrega"
+          type="datetime-local"
+          name="fechaEntrega"
+          [(ngModel)]="nuevoReporte.fechaEntrega">
+      </div>
+
+      <div class="campo">
+        <label for="montoTotal">Monto total</label>
+
+        <input
+          id="montoTotal"
+          type="number"
+          name="montoTotal"
+          [(ngModel)]="nuevoReporte.montoTotal">
+      </div>
+
+      <button
+        type="button"
+        class="boton-guardar">
+        Registrar pedido
+      </button>
+
+    </form>
+
+  </section>
+
 </div>
