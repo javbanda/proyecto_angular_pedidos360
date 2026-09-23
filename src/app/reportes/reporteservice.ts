@@ -5,13 +5,33 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ReportesService {
+export class ReporteService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:5001/api/reportes';
+  private apiUrl = 'http://localhost:5001/api/report';
 
-  obtenerReportes(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  obtenerKpis(): Observable<string> {
+    return this.http.get(this.apiUrl + '/kpis', {
+      responseType: 'text'
+    });
+  }
+
+  obtenerEstadosActivos(): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.apiUrl + '/estados-activos'
+    );
+  }
+
+  obtenerLeadTime(): Observable<any> {
+    return this.http.get<any>(
+      this.apiUrl + '/lead-time'
+    );
+  }
+
+  obtenerVentasPorHora(): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.apiUrl + '/ventas-por-hora'
+    );
   }
 }
