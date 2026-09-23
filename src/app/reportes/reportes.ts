@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ReporteService } from './reporteservice';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './reportes.html',
   styleUrl: './reportes.css'
 })
