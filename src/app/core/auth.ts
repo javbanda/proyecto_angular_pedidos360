@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface LoginResponse {
   accessToken: string;
@@ -15,13 +16,11 @@ export interface LoginResponse {
 })
 export class Auth {
 
-  private apiUrl = 'http://localhost:8082/api/usuarios';
-
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
-      `${this.apiUrl}/login`,
+      environment.apiLogin,
       {
         email: email,
         password: password
