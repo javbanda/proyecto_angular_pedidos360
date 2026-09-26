@@ -12,6 +12,7 @@
   <!-- Indicadores principales -->
   <div class="tarjetas">
 
+    <!-- Pedidos activos -->
     <div class="tarjeta">
       <h3>Pedidos activos</h3>
 
@@ -23,11 +24,15 @@
       }
     </div>
 
+    <!-- Lead Time -->
     <div class="tarjeta">
       <h3>Lead Time promedio</h3>
 
       @if (leadTime()) {
-        <p class="numero">{{ leadTime().promedioMinutos }} min</p>
+        <p class="numero">
+          {{ leadTime().promedioMinutos }} min
+        </p>
+
         <span>
           {{ leadTime().cantidadPedidosConsiderados }}
           pedidos considerados
@@ -35,12 +40,18 @@
       }
     </div>
 
+    <!-- Ventas -->
     <div class="tarjeta">
       <h3>Ventas por hora</h3>
 
       @for (venta of ventasPorHora(); track venta.hora) {
-        <p class="numero">${{ venta.totalVentas }}</p>
-        <span>{{ venta.hora }}:00 hrs</span>
+        <p class="numero">
+          ${{ venta.totalVentas }}
+        </p>
+
+        <span>
+          {{ venta.hora }}:00 hrs
+        </span>
       } @empty {
         <p>No hay ventas registradas</p>
       }
@@ -48,7 +59,7 @@
 
   </div>
 
-  <!-- Formulario para registrar pedidos -->
+  <!-- Formulario -->
   <section class="formulario-reporte">
 
     <h2>Registrar pedido</h2>
@@ -59,8 +70,11 @@
 
     <form>
 
+      <!-- ID -->
       <div class="campo">
-        <label for="pedidoId">ID del pedido</label>
+        <label for="pedidoId">
+          ID del pedido
+        </label>
 
         <input
           id="pedidoId"
@@ -69,26 +83,49 @@
           [(ngModel)]="nuevoReporte.pedidoId">
       </div>
 
+      <!-- Estado -->
       <div class="campo">
-        <label for="estado">Estado</label>
+        <label for="estado">
+          Estado
+        </label>
 
         <select
           id="estado"
           name="estado"
           [(ngModel)]="nuevoReporte.estado">
 
-          <option value="CREADO">Creado</option>
-          <option value="ACEPTADO">Aceptado</option>
-          <option value="EN_PREPARACION">En preparación</option>
-          <option value="DESPACHADO">Despachado</option>
-          <option value="ENTREGADO">Entregado</option>
-          <option value="CANCELADO">Cancelado</option>
+          <option value="CREADO">
+            Creado
+          </option>
+
+          <option value="ACEPTADO">
+            Aceptado
+          </option>
+
+          <option value="EN_PREPARACION">
+            En preparación
+          </option>
+
+          <option value="DESPACHADO">
+            Despachado
+          </option>
+
+          <option value="ENTREGADO">
+            Entregado
+          </option>
+
+          <option value="CANCELADO">
+            Cancelado
+          </option>
 
         </select>
       </div>
 
+      <!-- Fecha creación -->
       <div class="campo">
-        <label for="fechaCreacion">Fecha de creación</label>
+        <label for="fechaCreacion">
+          Fecha de creación
+        </label>
 
         <input
           id="fechaCreacion"
@@ -97,8 +134,11 @@
           [(ngModel)]="nuevoReporte.fechaCreacion">
       </div>
 
+      <!-- Fecha entrega -->
       <div class="campo">
-        <label for="fechaEntrega">Fecha de entrega</label>
+        <label for="fechaEntrega">
+          Fecha de entrega
+        </label>
 
         <input
           id="fechaEntrega"
@@ -107,8 +147,11 @@
           [(ngModel)]="nuevoReporte.fechaEntrega">
       </div>
 
+      <!-- Monto -->
       <div class="campo">
-        <label for="montoTotal">Monto total</label>
+        <label for="montoTotal">
+          Monto total
+        </label>
 
         <input
           id="montoTotal"
@@ -117,9 +160,11 @@
           [(ngModel)]="nuevoReporte.montoTotal">
       </div>
 
+      <!-- Botón -->
       <button
         type="button"
-        class="boton-guardar">
+        class="boton-guardar"
+        (click)="guardarReporte()">
         Registrar pedido
       </button>
 
