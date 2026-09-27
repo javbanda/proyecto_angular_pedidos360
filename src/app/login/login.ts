@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
+import { Auth } from '../core/auth';
 
 type ModoLogin = 'login' | 'registro' | 'recuperar';
 
@@ -12,34 +14,66 @@ type ModoLogin = 'login' | 'registro' | 'recuperar';
   styleUrl: './login.css',
 })
 export class Login {
-  // controla qué formulario se muestra (no es un objeto de datos, es "estado de vista")
+
+  // Controla qué formulario se muestra
   modo = signal<ModoLogin>('login');
 
-  // campos del formulario de login (propiedades normales, no signals)
+  // Campos del formulario de login
   email = '';
   password = '';
 
-  // campos del formulario de registro
+  // Mensaje para mostrar resultado del login
+  mensaje = '';
+
+  // Campos del formulario de registro
   nombreRegistro = '';
   emailRegistro = '';
   passwordRegistro = '';
 
-  // campo de recuperar contraseña
+  // Campo de recuperar contraseña
   emailRecuperar = '';
+
+  constructor(
+    private auth: Auth,
+    private router: Router
+  ) {}
 
   cambiarModo(nuevoModo: ModoLogin): void {
     this.modo.set(nuevoModo);
+    this.mensaje = '';
   }
 
   iniciarSesion(): void {
-    console.log('Login (pendiente de integrar con backend):', this.email, this.password);
+
+    if (!this.email || !this.password) {
+      this.mensaje = 'Debe ingresar correo y contraseña.';
+      return;
+    }
+
+    this.auth.login(this.email, this.password).subscribe({
+      next: () => {
+        this.mensaje = 'Inicio de sesión exitoso.';
+        this.router.navigate(['/reportes']);
+      },
+      error: (error) => {
+        console.error('Error al iniciar sesión:', error);
+        this.mensaje = 'Correo o contraseña incorrectos.';
+      }
+    });
   }
 
   registrarUsuario(): void {
-    console.log('Registro (pendiente de integrar con backend):', this.nombreRegistro, this.emailRegistro);
+    console.log(
+      'Registro pendiente de integrar con backend:',
+      this.nombreRegistro,
+      this.emailRegistro
+    );
   }
 
   enviarRecuperacion(): void {
-    console.log('Recuperar contraseña (pendiente de integrar con backend):', this.emailRecuperar);
+    console.log(
+      'Recuperar contraseña pendiente de integrar con backend:',
+      this.emailRecuperar
+    );
   }
 }
