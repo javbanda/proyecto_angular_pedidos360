@@ -1,1 +1,171 @@
-<p>catalogo works!</p>
+<div class="catalogo-container">
+
+  <h1>Catálogo Pedidos360</h1>
+  <p class="subtitulo">
+    Administración de productos y stock
+  </p>
+
+  <!-- Resumen -->
+  <div class="tarjetas">
+
+    <div class="tarjeta">
+      <h3>Total productos</h3>
+      <p class="numero">25</p>
+      <span>Productos registrados</span>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Productos disponibles</h3>
+      <p class="numero">20</p>
+      <span>Con stock disponible</span>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Sin stock</h3>
+      <p class="numero">5</p>
+      <span>Productos agotados</span>
+    </div>
+
+  </div>
+
+  <!-- Listado de productos -->
+  <section class="listado-productos">
+
+    <h2>Listado de productos</h2>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <!-- Datos de ejemplo visuales -->
+        <tr>
+          <td>1</td>
+          <td>Café Latte</td>
+          <td>$3.500</td>
+          <td>15</td>
+          <td>Disponible</td>
+          <td>
+            <button type="button">Editar</button>
+            <button type="button">Eliminar</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>Pan de chocolate</td>
+          <td>$2.500</td>
+          <td>8</td>
+          <td>Disponible</td>
+          <td>
+            <button type="button">Editar</button>
+            <button type="button">Eliminar</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>Cheesecake</td>
+          <td>$4.000</td>
+          <td>0</td>
+          <td>Sin stock</td>
+          <td>
+            <button type="button">Editar</button>
+            <button type="button">Eliminar</button>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </section>
+
+  <!-- Formulario visual -->
+  <section class="formulario-producto">
+
+    <h2>Registrar producto</h2>
+
+    <p class="descripcion-formulario">
+      Ingresa los datos del nuevo producto.
+    </p>
+
+    <form>
+
+      <div class="campo">
+        <label for="nombre">
+          Nombre del producto
+        </label>
+
+        <input
+          id="nombre"
+          type="text"
+          name="nombre"
+          placeholder="Ej: Café Latte">
+      </div>
+
+      <div class="campo">
+        <label for="precio">
+          Precio
+        </label>
+
+        <input
+          id="precio"
+          type="number"
+          name="precio"
+          placeholder="Ej: 3500">
+      </div>
+
+      <div class="campo">
+        <label for="stock">
+          Stock
+        </label>
+
+        <input
+          id="stock"
+          type="number"
+          name="stock"
+          placeholder="Ej: 20">
+      </div>
+
+      <div class="campo">
+        <label for="estado">
+          Estado
+        </label>
+
+        <select
+          id="estado"
+          name="estado">
+
+          <option value="DISPONIBLE">
+            Disponible
+          </option>
+
+          <option value="SIN_STOCK">
+            Sin stock
+          </option>
+
+        </select>
+      </div>
+
+      <button
+        type="button"
+        class="boton-guardar">
+        Registrar producto
+      </button>
+
+    </form>
+
+  </section>
+
+</div>

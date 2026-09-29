@@ -4,14 +4,22 @@ import { Home } from './home/home';
 import { Pedidos } from './pedidos/pedidos';
 import { Login } from './login/login';
 import { Reportes } from './reportes/reportes';
+import { Catalogo } from './catalogo/catalogo';
+import { Sucursal } from './sucursal/sucursal';
 
 import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
 
-  { path: '', component: Home },
+  {
+    path: '',
+    component: Home
+  },
 
-  { path: 'login', component: Login },
+  {
+    path: 'login',
+    component: Login
+  },
 
   {
     path: 'pedidos',
@@ -25,6 +33,21 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  { path: '**', redirectTo: '' },
+  {
+    path: 'catalogo',
+    component: Catalogo,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'sucursal',
+    component: Sucursal,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: '**',
+    redirectTo: ''
+  }
 
 ];

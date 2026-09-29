@@ -1,1 +1,144 @@
-<p>sucursal works!</p>
+<div class="sucursal-container">
+
+  <h1>Sucursales Pedidos360</h1>
+  <p class="subtitulo">
+    Administración de sucursales de la red Pedidos360
+  </p>
+
+  <!-- Resumen -->
+  <div class="tarjetas">
+
+    <div class="tarjeta">
+      <h3>Total sucursales</h3>
+      <p class="numero">20</p>
+      <span>Sucursales registradas</span>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Sucursales activas</h3>
+      <p class="numero">18</p>
+      <span>Actualmente operativas</span>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Sucursales inactivas</h3>
+      <p class="numero">2</p>
+      <span>Actualmente inactivas</span>
+    </div>
+
+  </div>
+
+  <!-- Listado de sucursales -->
+  <section class="listado-sucursales">
+
+    <h2>Listado de sucursales</h2>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <!-- Datos de ejemplo visuales -->
+        <tr>
+          <td>1</td>
+          <td>Sucursal Centro</td>
+          <td>Santiago Centro</td>
+          <td>Activa</td>
+          <td>
+            <button type="button">Editar</button>
+            <button type="button">Eliminar</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>Sucursal Providencia</td>
+          <td>Providencia</td>
+          <td>Activa</td>
+          <td>
+            <button type="button">Editar</button>
+            <button type="button">Eliminar</button>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </section>
+
+  <!-- Formulario visual -->
+  <section class="formulario-sucursal">
+
+    <h2>Registrar sucursal</h2>
+
+    <p class="descripcion-formulario">
+      Ingresa los datos de la nueva sucursal.
+    </p>
+
+    <form>
+
+      <div class="campo">
+        <label for="nombre">
+          Nombre
+        </label>
+
+        <input
+          id="nombre"
+          type="text"
+          name="nombre"
+          placeholder="Ej: Sucursal Centro">
+      </div>
+
+      <div class="campo">
+        <label for="direccion">
+          Dirección
+        </label>
+
+        <input
+          id="direccion"
+          type="text"
+          name="direccion"
+          placeholder="Ej: Av. Principal 123">
+      </div>
+
+      <div class="campo">
+        <label for="estado">
+          Estado
+        </label>
+
+        <select
+          id="estado"
+          name="estado">
+
+          <option value="ACTIVA">
+            Activa
+          </option>
+
+          <option value="INACTIVA">
+            Inactiva
+          </option>
+
+        </select>
+      </div>
+
+      <button
+        type="button"
+        class="boton-guardar">
+        Registrar sucursal
+      </button>
+
+    </form>
+
+  </section>
+
+</div>
