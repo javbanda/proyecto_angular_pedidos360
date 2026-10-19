@@ -1,3 +1,4 @@
+
 <div class="catalogo-container">
 
   <h1>Catálogo Pedidos360</h1>
@@ -5,25 +6,29 @@
     Administración de productos y stock
   </p>
 
-  <!-- Resumen -->
+  <!-- Resumen de productos -->
   <div class="tarjetas">
 
     <div class="tarjeta">
       <h3>Total productos</h3>
-      <p class="numero">25</p>
+      <p class="numero">{{ productos.length }}</p>
       <span>Productos registrados</span>
     </div>
 
     <div class="tarjeta">
-      <h3>Productos disponibles</h3>
-      <p class="numero">20</p>
-      <span>Con stock disponible</span>
+      <h3>Productos activos</h3>
+      <p class="numero">
+        {{ productosActivos }}
+      </p>
+      <span>Productos habilitados</span>
     </div>
 
     <div class="tarjeta">
-      <h3>Sin stock</h3>
-      <p class="numero">5</p>
-      <span>Productos agotados</span>
+      <h3>Productos inactivos</h3>
+      <p class="numero">
+        {{ productosInactivos }}
+      </p>
+      <span>Productos desactivados</span>
     </div>
 
   </div>
@@ -33,65 +38,78 @@
 
     <h2>Listado de productos</h2>
 
-    <table>
+    @if (cargando) {
+      <p>Cargando productos...</p>
+    }
 
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
+    @if (error) {
+      <p>{{ error }}</p>
+    }
 
-      <tbody>
+    @if (!cargando && !error) {
 
-        <!-- Datos de ejemplo visuales -->
-        <tr>
-          <td>1</td>
-          <td>Café Latte</td>
-          <td>$3.500</td>
-          <td>15</td>
-          <td>Disponible</td>
-          <td>
-            <button type="button">Editar</button>
-            <button type="button">Eliminar</button>
-          </td>
-        </tr>
+      <table>
 
-        <tr>
-          <td>2</td>
-          <td>Pan de chocolate</td>
-          <td>$2.500</td>
-          <td>8</td>
-          <td>Disponible</td>
-          <td>
-            <button type="button">Editar</button>
-            <button type="button">Eliminar</button>
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
 
-        <tr>
-          <td>3</td>
-          <td>Cheesecake</td>
-          <td>$4.000</td>
-          <td>0</td>
-          <td>Sin stock</td>
-          <td>
-            <button type="button">Editar</button>
-            <button type="button">Eliminar</button>
-          </td>
-        </tr>
+        <tbody>
 
-      </tbody>
+          @for (producto of productos; track producto.id) {
 
-    </table>
+            <tr>
+              <td>{{ producto.id }}</td>
+
+              <td>{{ producto.nombre }}</td>
+
+              <td>
+                {{ producto.precio | currency:'CLP':'symbol-narrow':'1.0-0' }}
+              </td>
+
+              <td>Por sucursal</td>
+
+              <td>
+                {{ producto.activo ? 'Activo' : 'Inactivo' }}
+              </td>
+
+              <td>
+                <button type="button" disabled>
+                  Editar
+                </button>
+
+                <button type="button" disabled>
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+
+          } @empty {
+
+            <tr>
+              <td colspan="6">
+                No hay productos registrados.
+              </td>
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    }
 
   </section>
 
-  <!-- Formulario visual -->
+  <!-- Formulario de productos -->
   <section class="formulario-producto">
 
     <h2>Registrar producto</h2>
@@ -111,7 +129,34 @@
           id="nombre"
           type="text"
           name="nombre"
+          maxlength="120"
           placeholder="Ej: Café Latte">
+      </div>
+
+      <div class="campo">
+        <label for="descripcion">
+          Descripción
+        </label>
+
+        <input
+          id="descripcion"
+          type="text"
+          name="descripcion"
+          maxlength="500"
+          placeholder="Ej: Café con leche">
+      </div>
+
+      <div class="campo">
+        <label for="categoria">
+          Categoría
+        </label>
+
+        <input
+          id="categoria"
+          type="text"
+          name="categoria"
+          maxlength="80"
+          placeholder="Ej: Bebidas">
       </div>
 
       <div class="campo">
@@ -123,44 +168,33 @@
           id="precio"
           type="number"
           name="precio"
+          min="0.01"
+          step="0.01"
           placeholder="Ej: 3500">
       </div>
 
       <div class="campo">
-        <label for="stock">
-          Stock
+        <label for="imagenUrl">
+          URL de imagen
         </label>
 
         <input
-          id="stock"
-          type="number"
-          name="stock"
-          placeholder="Ej: 20">
+          id="imagenUrl"
+          type="url"
+          name="imagenUrl"
+          maxlength="500"
+          placeholder="https://ejemplo.com/imagen.jpg">
       </div>
 
-      <div class="campo">
-        <label for="estado">
-          Estado
-        </label>
-
-        <select
-          id="estado"
-          name="estado">
-
-          <option value="DISPONIBLE">
-            Disponible
-          </option>
-
-          <option value="SIN_STOCK">
-            Sin stock
-          </option>
-
-        </select>
-      </div>
+      <p class="descripcion-formulario">
+        El stock se administra por sucursal y se configurará
+        por separado.
+      </p>
 
       <button
         type="button"
-        class="boton-guardar">
+        class="boton-guardar"
+        disabled>
         Registrar producto
       </button>
 
