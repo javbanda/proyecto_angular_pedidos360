@@ -118,7 +118,13 @@
       Ingresa los datos del nuevo producto.
     </p>
 
-    <form>
+    @if (mensaje) {
+      <p>{{ mensaje }}</p>
+    }
+
+    <form
+      #productoForm="ngForm"
+      (ngSubmit)="registrarProducto()">
 
       <div class="campo">
         <label for="nombre">
@@ -129,7 +135,9 @@
           id="nombre"
           type="text"
           name="nombre"
+          [(ngModel)]="nuevoProducto.nombre"
           maxlength="120"
+          required
           placeholder="Ej: Café Latte">
       </div>
 
@@ -142,6 +150,7 @@
           id="descripcion"
           type="text"
           name="descripcion"
+          [(ngModel)]="nuevoProducto.descripcion"
           maxlength="500"
           placeholder="Ej: Café con leche">
       </div>
@@ -155,7 +164,9 @@
           id="categoria"
           type="text"
           name="categoria"
+          [(ngModel)]="nuevoProducto.categoria"
           maxlength="80"
+          required
           placeholder="Ej: Bebidas">
       </div>
 
@@ -168,8 +179,10 @@
           id="precio"
           type="number"
           name="precio"
+          [(ngModel)]="nuevoProducto.precio"
           min="0.01"
           step="0.01"
+          required
           placeholder="Ej: 3500">
       </div>
 
@@ -182,6 +195,7 @@
           id="imagenUrl"
           type="url"
           name="imagenUrl"
+          [(ngModel)]="nuevoProducto.imagenUrl"
           maxlength="500"
           placeholder="https://ejemplo.com/imagen.jpg">
       </div>
@@ -192,10 +206,12 @@
       </p>
 
       <button
-        type="button"
+        type="submit"
         class="boton-guardar"
-        disabled>
-        Registrar producto
+        [disabled]="productoForm.invalid || guardando">
+
+        {{ guardando ? 'Guardando...' : 'Registrar producto' }}
+
       </button>
 
     </form>

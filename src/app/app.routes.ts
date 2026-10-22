@@ -34,10 +34,9 @@ export const routes: Routes = [
   },
 
   {
-    path: 'catalogo',
-    component: Catalogo,
-    canActivate: [authGuard]
-  },
+  path: 'catalogo',
+  component: Catalogo
+ },
 
   {
     path: 'sucursal',
