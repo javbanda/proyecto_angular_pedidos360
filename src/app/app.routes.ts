@@ -22,10 +22,9 @@ export const routes: Routes = [
   },
 
   {
-    path: 'pedidos',
-    component: Pedidos,
-    canActivate: [authGuard]
-  },
+  path: 'pedidos',
+  component: Pedidos
+},
 
   {
     path: 'reportes',
