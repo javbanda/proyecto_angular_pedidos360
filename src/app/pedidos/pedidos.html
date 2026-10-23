@@ -1,37 +1,78 @@
-
 <h2>Gestión de Pedidos</h2>
 
 <form (ngSubmit)="guardarPedido()">
-    <div>
-        <label for="cliente">Cliente</label>
-        <input type="text" id="cliente" [(ngModel)]="nuevoPedido().cliente"
-          name="cliente" placeholder="Cliente" required />
-    </div>
 
-    <div>
-        <label for="detalle">Detalle:</label>
-        <input
-          type="text" id="detalle" [(ngModel)]="nuevoPedido().detalle"
-          name="detalle" placeholder="Detalle (Ej: 1 Kilo Pan)" required />
-    </div>
+  <div>
+    <label for="clienteId">ID del cliente:</label>
+    <input
+      type="number"
+      id="clienteId"
+      name="clienteId"
+      [(ngModel)]="nuevoPedido().clienteId"
+      min="1"
+      placeholder="Ej: 1"
+      required />
+  </div>
 
-    <div>
-        <label for="total">Total($):</label>
-        <input
-          type="number" id="total" [(ngModel)]="nuevoPedido().total"
-          name="total" placeholder="Total ($)" required />
-    </div>
-        <button type="submit">Crear Pedido</button>
+  <div>
+    <label for="sucursalId">ID de la sucursal:</label>
+    <input
+      type="number"
+      id="sucursalId"
+      name="sucursalId"
+      [(ngModel)]="nuevoPedido().sucursalId"
+      min="1"
+      placeholder="Ej: 1"
+      required />
+  </div>
+
+  <div>
+    <label for="productoId">ID del producto:</label>
+    <input
+      type="number"
+      id="productoId"
+      name="productoId"
+      [(ngModel)]="nuevoPedido().detalles[0].productoId"
+      min="1"
+      placeholder="Ej: 2"
+      required />
+  </div>
+
+  <div>
+    <label for="cantidad">Cantidad:</label>
+    <input
+      type="number"
+      id="cantidad"
+      name="cantidad"
+      [(ngModel)]="nuevoPedido().detalles[0].cantidad"
+      min="1"
+      required />
+  </div>
+
+  <button type="submit">Crear Pedido</button>
+
 </form>
+
 <hr />
 
 <h3>Lista de pedidos</h3>
+
 <ul>
-    @for (p of pedidos(); track p.id) {
-      <li>
-        <strong>#{{ p.id }} - {{ p.cliente }}</strong>: {{ p.detalle }} (Total: ${{ p.total}})
-      </li>
-    } @empty {
-        <li>No hay pedidos registrados.</li>
-    }
+  @for (p of pedidos(); track p.id) {
+    <li>
+      <strong>Pedido #{{ p.id }}</strong>
+      <br />
+      Cliente: {{ p.clienteId }}
+      <br />
+      Sucursal: {{ p.sucursalId }}
+      <br />
+      Estado: {{ p.estado }}
+      <br />
+      Total: ${{ p.montoTotal }}
+      <br />
+      Fecha de creación: {{ p.fechaCreacion }}
+    </li>
+  } @empty {
+    <li>No hay pedidos registrados.</li>
+  }
 </ul>
