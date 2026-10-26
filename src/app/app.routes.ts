@@ -6,46 +6,52 @@ import { Login } from './login/login';
 import { Reportes } from './reportes/reportes';
 import { Catalogo } from './catalogo/catalogo';
 import { Sucursal } from './sucursal/sucursal';
+import { MsalGuard } from '@azure/msal-angular';
+import { Operador } from './operador/operador';
 
 import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
-
   {
     path: '',
-    component: Home
+    component: Home,
   },
 
   {
     path: 'login',
-    component: Login
+    component: Login,
   },
 
   {
-  path: 'pedidos',
-  component: Pedidos
-},
+    path: 'pedidos',
+    component: Pedidos,
+  },
 
   {
     path: 'reportes',
     component: Reportes,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   {
-  path: 'catalogo',
-  component: Catalogo
- },
+    path: 'catalogo',
+    component: Catalogo,
+  },
 
   {
     path: 'sucursal',
     component: Sucursal,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'operador',
+    component: Operador,
+    canActivate: [MsalGuard],
   },
 
   {
     path: '**',
-    redirectTo: ''
-  }
-
+    redirectTo: '',
+  },
 ];
