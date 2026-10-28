@@ -8,17 +8,14 @@
   <nav class="menu">
     <a routerLink="/">Inicio</a>
     <a routerLink="/pedidos">Pedidos</a>
-    <a routerLink="/catalogo">Catálogo</a>
-    <a routerLink="/sucursal">Sucursales</a>
-    <a routerLink="/reportes">Reportes</a>
-    <a routerLink="/login">Login</a>
+    <a routerLink="/operador">Panel Operador</a>
   </nav>
 
   <section class="bienvenida">
     <h2>Bienvenido a Pedidos360</h2>
     <p>
-      Plataforma para gestionar pedidos, productos, sucursales
-      y visualizar reportes.
+      Plataforma para consultar y gestionar pedidos,
+      tickets de preparación y notificaciones.
     </p>
   </section>
 
@@ -27,7 +24,8 @@
     <div class="tarjeta">
       <h3>Pedidos</h3>
       <p>
-        Consulta y administra los pedidos registrados en la plataforma.
+        Consulta los pedidos registrados, crea pedidos de prueba
+        y gestiona sus estados.
       </p>
 
       <a routerLink="/pedidos" class="boton">
@@ -36,46 +34,14 @@
     </div>
 
     <div class="tarjeta">
-      <h3>Catálogo</h3>
+      <h3>Panel Operador</h3>
       <p>
-        Consulta y administra los productos y su stock.
+        Consulta los tickets de preparación, actualiza sus estados
+        y revisa las notificaciones.
       </p>
 
-      <a routerLink="/catalogo" class="boton">
-        Ver catálogo
-      </a>
-    </div>
-
-    <div class="tarjeta">
-      <h3>Sucursales</h3>
-      <p>
-        Consulta y administra las sucursales de la red Pedidos360.
-      </p>
-
-      <a routerLink="/sucursal" class="boton">
-        Ver sucursales
-      </a>
-    </div>
-
-    <div class="tarjeta">
-      <h3>Reportes</h3>
-      <p>
-        Consulta ventas, estados de pedidos y tiempos de entrega.
-      </p>
-
-      <a routerLink="/reportes" class="boton">
-        Ver reportes
-      </a>
-    </div>
-
-    <div class="tarjeta">
-      <h3>Acceso</h3>
-      <p>
-        Inicia sesión para acceder a las funciones de la plataforma.
-      </p>
-
-      <a routerLink="/login" class="boton">
-        Iniciar sesión
+      <a routerLink="/operador" class="boton">
+        Ir al panel
       </a>
     </div>
 
