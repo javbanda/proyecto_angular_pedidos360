@@ -8,6 +8,7 @@ import { Catalogo } from './catalogo/catalogo';
 import { Sucursal } from './sucursal/sucursal';
 import { MsalGuard } from '@azure/msal-angular';
 import { Operador } from './operador/operador';
+import { HomeOperador } from './home-operador/home-operador';
 
 import { authGuard } from './guard/auth-guard';
 
@@ -42,6 +43,11 @@ export const routes: Routes = [
   path: 'sucursal',
   redirectTo: '',
  },
+ {
+  path: 'operador/inicio',
+  component: HomeOperador,
+  canActivate: [MsalGuard],
+},
 
   {
     path: 'operador',
