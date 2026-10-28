@@ -29,21 +29,19 @@ export const routes: Routes = [
 },
 
   {
-    path: 'reportes',
-    component: Reportes,
-    canActivate: [authGuard],
-  },
+  path: 'reportes',
+  redirectTo: '',
+ },
+
+ {
+  path: 'catalogo',
+  redirectTo: '',
+ },
 
   {
-    path: 'catalogo',
-    component: Catalogo,
-  },
-
-  {
-    path: 'sucursal',
-    component: Sucursal,
-    canActivate: [authGuard],
-  },
+  path: 'sucursal',
+  redirectTo: '',
+ },
 
   {
     path: 'operador',
