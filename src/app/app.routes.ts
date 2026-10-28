@@ -23,9 +23,10 @@ export const routes: Routes = [
   },
 
   {
-    path: 'pedidos',
-    component: Pedidos,
-  },
+  path: 'pedidos',
+  component: Pedidos,
+  canActivate: [MsalGuard],
+},
 
   {
     path: 'reportes',
