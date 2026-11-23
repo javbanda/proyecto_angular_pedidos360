@@ -10,7 +10,7 @@ import { MsalGuard } from '@azure/msal-angular';
 import { Operador } from './operador/operador';
 import { HomeOperador } from './home-operador/home-operador';
 
-import { authGuard } from './guard/auth-guard';
+import { adminGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
   {
@@ -29,10 +29,11 @@ export const routes: Routes = [
   canActivate: [MsalGuard],
 },
 
-  {
+{
   path: 'reportes',
-  redirectTo: '',
- },
+  component: Reportes,
+  canActivate: [adminGuard],
+},
 
  {
   path: 'catalogo',
