@@ -1,3 +1,4 @@
+
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -53,7 +54,9 @@ export class Login {
     this.auth.login(this.email, this.password).subscribe({
       next: () => {
         this.mensaje = 'Inicio de sesión exitoso.';
-        this.router.navigate(['/reportes']);
+
+        // Redirigir al Home después de iniciar sesión
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Error al iniciar sesión:', error);

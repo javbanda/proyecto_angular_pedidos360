@@ -4,6 +4,10 @@
   <header class="encabezado">
     <h1>{{ nombrePlataforma }}</h1>
     <p>Gestión de pedidos para tu red de cafeterías y panaderías</p>
+
+    @if (esAdministrador()) {
+      <p>Bienvenido, Administrador</p>
+    }
   </header>
 
   <nav class="menu">
@@ -11,17 +15,34 @@
     <a routerLink="/pedidos">Pedidos</a>
     <a routerLink="/catalogo">Catálogo</a>
     <a routerLink="/sucursal">Sucursales</a>
-    <a routerLink="/reportes">Reportes</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/operador/inicio">Operador</a>
+
+    @if (esAdministrador()) {
+      <a routerLink="/reportes">Reportes</a>
+    }
+
+    @if (estaAutenticado()) {
+      <a routerLink="/" (click)="cerrarSesion()">
+        Cerrar sesión
+      </a>
+    } @else {
+      <a routerLink="/login">Login</a>
+    }
   </nav>
 
   <section class="bienvenida">
     <h2>Bienvenido a Pedidos360</h2>
-    <p>
-      Plataforma para gestionar pedidos, productos, sucursales
-      y visualizar reportes.
-    </p>
+
+    @if (esAdministrador()) {
+      <p>
+        Panel de administración para gestionar y visualizar
+        los indicadores de la plataforma.
+      </p>
+    } @else {
+      <p>
+        Plataforma para gestionar pedidos, productos,
+        sucursales y visualizar reportes.
+      </p>
+    }
   </section>
 
   <section class="tarjetas">
@@ -31,7 +52,6 @@
       <p>
         Consulta y administra los pedidos registrados en la plataforma.
       </p>
-
       <a routerLink="/pedidos" class="boton">
         Ver pedidos
       </a>
@@ -42,7 +62,6 @@
       <p>
         Consulta y administra los productos y su stock.
       </p>
-
       <a routerLink="/catalogo" class="boton">
         Ver catálogo
       </a>
@@ -53,45 +72,34 @@
       <p>
         Consulta y administra las sucursales de la red Pedidos360.
       </p>
-
       <a routerLink="/sucursal" class="boton">
         Ver sucursales
       </a>
     </div>
 
-    <div class="tarjeta">
-      <h3>Reportes</h3>
-      <p>
-        Consulta ventas, estados de pedidos y tiempos de entrega.
-      </p>
+    @if (esAdministrador()) {
+      <div class="tarjeta">
+        <h3>Reportes</h3>
+        <p>
+          Consulta ventas, estados de pedidos y tiempos de entrega.
+        </p>
+        <a routerLink="/reportes" class="boton">
+          Ver reportes
+        </a>
+      </div>
+    }
 
-      <a routerLink="/reportes" class="boton">
-        Ver reportes
-      </a>
-    </div>
-
-    <div class="tarjeta">
-      <h3>Acceso</h3>
-      <p>
-        Inicia sesión para acceder a las funciones de la plataforma.
-      </p>
-
-      <a routerLink="/login" class="boton">
-        Iniciar sesión
-      </a>
-    </div>
-
-    <div class="tarjeta">
-      <h3>Área del Operador</h3>
-      <p>
-        Accede al espacio del Operador para gestionar pedidos,
-        tickets de preparación y notificaciones.
-      </p>
-
-      <a routerLink="/operador/inicio" class="boton">
-        Ingresar como Operador
-      </a>
-    </div>
+    @if (!estaAutenticado()) {
+      <div class="tarjeta">
+        <h3>Acceso</h3>
+        <p>
+          Inicia sesión para acceder a las funciones de la plataforma.
+        </p>
+        <a routerLink="/login" class="boton">
+          Iniciar sesión
+        </a>
+      </div>
+    }
 
   </section>
 
