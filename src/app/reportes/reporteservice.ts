@@ -10,7 +10,7 @@ export class ReporteService {
   private http = inject(HttpClient);
 
   private apiUrl =
-    'https://xw6uf5fra5.execute-api.us-east-1.amazonaws.com/api/report';
+    'https://2vb50rnhgc.execute-api.us-east-1.amazonaws.com/api/report';
 
   obtenerKpis(): Observable<string> {
     return this.http.get(this.apiUrl + '/kpis', {
