@@ -35,11 +35,4 @@ export class ReporteService {
       this.apiUrl + '/ventas-por-hora'
     );
   }
-
-  crearReporte(reporte: any): Observable<any> {
-    return this.http.post<any>(
-      this.apiUrl,
-      reporte
-    );
-  }
 }

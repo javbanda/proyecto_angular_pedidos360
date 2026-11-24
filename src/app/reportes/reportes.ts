@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { ReporteService } from './reporteservice';
-import { JsonPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [JsonPipe, FormsModule],
+  imports: [],
   templateUrl: './reportes.html',
   styleUrl: './reportes.css'
 })
@@ -34,14 +34,6 @@ export class Reportes implements OnInit {
   estadosActivos = signal<any[]>([]);
   leadTime = signal<any>(null);
   ventasPorHora = signal<any[]>([]);
-
-  nuevoReporte = {
-    pedidoId: null,
-    estado: 'CREADO',
-    fechaCreacion: '',
-    fechaEntrega: '',
-    montoTotal: null
-  };
 
   ngOnInit(): void {
 
@@ -84,21 +76,6 @@ export class Reportes implements OnInit {
         console.error('Error ventas por hora:', error);
       }
     });
-  }
-
-  guardarReporte(): void {
-
-    this.reportesService.crearReporte(this.nuevoReporte).subscribe({
-      next: (respuesta) => {
-        console.log('Reporte registrado:', respuesta);
-        alert('Pedido registrado correctamente');
-      },
-      error: (error) => {
-        console.error('Error al registrar pedido:', error);
-        alert('Error al registrar el pedido');
-      }
-    });
-
   }
 
 }
