@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { ReporteService } from './reporteservice';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,22 @@ export class Reportes implements OnInit {
   private reportesService = inject(ReporteService);
 
   kpis = signal('');
+  resumenKpis = computed(() => {
+    const texto = this.kpis();
+    if (!texto) return null;
+
+    try {
+      return JSON.parse(texto) as {
+        totalPedidos: number;
+        pedidosEntregados: number;
+        pedidosEnProceso: number;
+        totalVentas: number;
+        promedioLeadTimeMinutos: number;
+      };
+    } catch {
+      return null;
+    }
+  });
   estadosActivos = signal<any[]>([]);
   leadTime = signal<any>(null);
   ventasPorHora = signal<any[]>([]);
