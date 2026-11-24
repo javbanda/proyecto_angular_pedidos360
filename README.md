@@ -1,59 +1,119 @@
-# Proyectoangular
+# Pedidos360 - Frontend Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
+Frontend del proyecto Pedidos360, desarrollado para Desarrollo Cloud Native I.
 
-## Development server
+## Tecnologias
 
-To start a local development server, run:
+- Angular 22 y TypeScript.
+- AWS Cognito para autenticacion de administradores y clientes.
+- Microsoft Entra ID / MSAL para el flujo de operador.
+- API Gateway y AWS Lambda para consultar Reportes.
+- Grafana para visualizacion de indicadores.
 
-```bash
-ng serve
-```
+## Funcionalidades verificadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Inicio de sesion de Administrador mediante Cognito.
+- Inicio de sesion de Cliente mediante Cognito.
+- Proteccion de la ruta /reportes para ROLE_ADMIN.
+- Consulta de KPI de Reportes mediante API Gateway.
+- Visualizacion de pedidos, ventas y tiempos de entrega.
+- Dashboard Grafana embebido mediante iframe.
+- Restriccion de acceso a KPI en AWS para ROLE_CLIENTE.
 
-## Code scaffolding
+## Arquitectura de Reportes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Angular
+  -> API Gateway (autenticacion JWT)
+  -> AWS Lambda (autorizacion ROLE_ADMIN)
+  -> Microservicio Reportes en EC2
+  -> PostgreSQL RDS
 
-```bash
-ng generate component component-name
-```
+El microservicio Reportes consume eventos publicados mediante Kafka.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+El dashboard embebido utiliza Grafana y Prometheus.
 
-```bash
-ng generate --help
-```
+## Requisitos locales
 
-## Building
+- Node.js y npm compatibles con Angular 22.
+- Backend Users disponible en localhost:8084.
+- PostgreSQL configurado para Users.
+- Credenciales AWS validas en el entorno del backend Users.
+- Conexion a AWS para consultar Reportes.
 
-To build the project run:
+## Ejecucion
 
-```bash
-ng build
-```
+Instalar dependencias:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+    npm ci
 
-## Running unit tests
+Iniciar Angular:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+    npm start
 
-```bash
-ng test
-```
+Abrir en el navegador:
 
-## Running end-to-end tests
+    http://localhost:4200
 
-For end-to-end (e2e) testing, run:
+Comprobar compilacion:
 
-```bash
-ng e2e
-```
+    npm run build
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Rutas principales
 
-## Additional Resources
+- /login: inicio de sesion.
+- /reportes: indicadores administrativos.
+- /operador: funcionalidad de operador protegida mediante MSAL.
+- /pedidos: ruta protegida mediante MSAL.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Configuracion
+
+Los archivos de entorno Angular incluyen las rutas del backend Users.
+
+Durante las pruebas, Users se ejecuta en:
+
+    http://localhost:8084
+
+Reportes se consulta mediante API Gateway en AWS.
+
+No almacenar contrasenas, tokens JWT ni credenciales AWS en GitHub.
+
+## Grafana
+
+El iframe de Reportes utiliza localhost:3000.
+
+Para la demostracion local, Grafana requiere un tunel SSH activo
+hacia la instancia EC2 donde se encuentra desplegado.
+
+El acceso compartido o permanente a Grafana no esta implementado.
+
+## Seguridad
+
+- ROLE_ADMIN puede consultar indicadores administrativos.
+- ROLE_CLIENTE no puede acceder a Reportes.
+- La API de AWS tambien aplica autenticacion y autorizacion.
+- Las verificaciones del frontend no sustituyen los controles del backend.
+
+## Pendientes conocidos
+
+- Conectar el formulario Registrarme con un registro seguro en Cognito.
+- Implementar confirmacion real del correo electronico.
+- Endurecer el endpoint de registro de Users antes de publicarlo.
+- Resolver el acceso compartido a Grafana.
+- Completar las pruebas de integracion y evidencias finales.
+
+## Control de versiones
+
+Se utiliza GitHub Flow mediante ramas de funcionalidad y Pull Requests.
+
+La integracion de Reportes y Grafana se desarrolla en:
+
+    feat/grafana-reportes
+
+Los repositorios backend se administran por separado.
+
+## Estado
+
+La reportería administrativa y la separacion de roles fueron
+probadas en el entorno de desarrollo.
+
+El registro autonomo de clientes desde Angular sigue pendiente.
