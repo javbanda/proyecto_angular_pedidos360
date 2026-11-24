@@ -1,12 +1,12 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { ReporteService } from './reporteservice';
-import { JsonPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [JsonPipe, FormsModule],
+  imports: [],
   templateUrl: './reportes.html',
   styleUrl: './reportes.css'
 })
@@ -15,17 +15,25 @@ export class Reportes implements OnInit {
   private reportesService = inject(ReporteService);
 
   kpis = signal('');
+  resumenKpis = computed(() => {
+    const texto = this.kpis();
+    if (!texto) return null;
+
+    try {
+      return JSON.parse(texto) as {
+        totalPedidos: number;
+        pedidosEntregados: number;
+        pedidosEnProceso: number;
+        totalVentas: number;
+        promedioLeadTimeMinutos: number;
+      };
+    } catch {
+      return null;
+    }
+  });
   estadosActivos = signal<any[]>([]);
   leadTime = signal<any>(null);
   ventasPorHora = signal<any[]>([]);
-
-  nuevoReporte = {
-    pedidoId: null,
-    estado: 'CREADO',
-    fechaCreacion: '',
-    fechaEntrega: '',
-    montoTotal: null
-  };
 
   ngOnInit(): void {
 
@@ -68,21 +76,6 @@ export class Reportes implements OnInit {
         console.error('Error ventas por hora:', error);
       }
     });
-  }
-
-  guardarReporte(): void {
-
-    this.reportesService.crearReporte(this.nuevoReporte).subscribe({
-      next: (respuesta) => {
-        console.log('Reporte registrado:', respuesta);
-        alert('Pedido registrado correctamente');
-      },
-      error: (error) => {
-        console.error('Error al registrar pedido:', error);
-        alert('Error al registrar el pedido');
-      }
-    });
-
   }
 
 }

@@ -3,10 +3,10 @@ import { HttpInterceptorFn } from '@angular/common/http';
 // APIs utilizadas por las funcionalidades anteriores.
 // El token antiguo no debe enviarse a otras direcciones.
 const legacyApiUrls = [
-  'http://localhost:8082/api/usuarios',
+  'http://localhost:8084/api/usuarios',
   'http://localhost:8083/api/catalog',
   'https://ha9pj655yl.execute-api.us-east-1.amazonaws.com/api/orders',
-  'https://xw6uf5fra5.execute-api.us-east-1.amazonaws.com/api/report',
+  'https://2vb50rnhgc.execute-api.us-east-1.amazonaws.com/api/report',
 ];
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
